@@ -1,0 +1,23 @@
+We are first creating a user specific model to analyze and recognise emotions of a particular user
+How?-> 
+First dataset creation using UserDataSetModeller:
+# Define audio clips and corresponding labels,
+# Start audio playback,
+# audio track being played capture frames (2 every second) whenever deepface detects any emotion irrespectively label it as whichever clip is being played.
+# store it and prepare test and train dataset.
+Then model training:
+We are using VGG16 pre-trained model , # Fine-tune the top layers of VGG16, # Build the custom model,
+# Compile the model with a lower learning rate,# Data augmentation for training and validation sets,
+# Define callbacks ,# Train the model
+Now our model is ready.
+# we can use modeltester.py to just check if model is working as we want or not by running OpenCV and trying it.
+
+NOW THE FINAL PART THE MAIN APP:
+We are basically launching a pyqt gui application with OpenCV running to detect face emotions.
+Now we launch a selenium controllable chrome window with ytmusic running.
+Whenever the user plays a song his emotions will be tracked for 7 seconds if he doesn't like it based on the emotions it will change.
+We are using both deepface and custom model which we made to analyze and detect the emotion .
+Our custom model has 0.7 weight and deepface has 0.3 weight whichever with highest confidence wins and that emotion is considerd final
+On the open cv window we only display the deepface emotion detected as it is lightweight and our model is heavy so to minimize lag .
+After 7 seconds no tracking and stuff. OK no emotion analysis and all. (You guys can work on using this model and creating an analysis which chooses song from ur library but yes upto u now when u r reading this decide amongst urself)
+Last but not the least: We have speech recognition (Nova) which runs on a separate thread listening to voice commands to play pause and stop the music and to go to next song.
